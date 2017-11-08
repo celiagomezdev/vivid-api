@@ -3,8 +3,11 @@ const BarService = require('./services/bar-service')
 
 const app = express()
 
-app.get('/', async (req, res, next) => {
-  res.send(await BarService.findAll())
+app.set('view engine', 'pug')
+
+app.get('/', (req, res, next) => {
+  res.sendFile(__dirname + '/index.html')
+  // res.send(await BarService.findAll())
 })
 
 app.listen(3000, () => {
