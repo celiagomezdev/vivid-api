@@ -5,9 +5,10 @@ module.exports = class Bar {
     address,
     postalCode,
     location,
-    placeId,
+    id,
+    googlePlaceId,
     rating,
-    smokeType,
+    smokingType,
     checked,
     photos,
     placeTypes
@@ -17,9 +18,10 @@ module.exports = class Bar {
     this.address = address
     this.postalCode = postalCode
     this.location = location
-    this.placeId = placeId
+    this.id = id
+    this.googlePlaceId = googlePlaceId
     this.rating = rating
-    this.smokeType = smokeType
+    this.smokingType = smokingType
     this.checked = checked
     this.photos = photos
     this.placeTypes = placeTypes
@@ -32,9 +34,10 @@ module.exports = class Bar {
       bar.address,
       bar.postalCode,
       bar.location,
-      bar.placeId,
+      bar.id,
+      bar.googlePlaceId,
       bar.rating,
-      bar.smokeType,
+      bar.smokingType,
       bar.checked,
       bar.photos,
       bar.placeTypes
