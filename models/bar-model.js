@@ -1,4 +1,4 @@
-const faker = require('faker')
+const uuidv1 = require('uuid/v1')
 
 module.exports = class Bar {
   constructor(
@@ -7,7 +7,7 @@ module.exports = class Bar {
     neighbourhood = '',
     postalCode = 0,
     location = '',
-    id = faker.random.uuid(),
+    id = uuidv1(),
     googlePlaceId = '',
     rating = 0,
     smokingType = '',

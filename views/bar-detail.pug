@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  if bar 
+    h1 Bar added: #{bar.name}
+    p Here are the full details:
+    ul
+      p <b>Name</b>: #{bar.name}
+      p <b>Address</b>: #{bar.address}
+      p <b>Postal Code</b>: #{bar.postalCode}
+      p <b>smokingType</b>: #{bar.smokingType}
+      p <b>Id</b>: #{bar.id}
+
+  else 
+   h1 No bar added!
+  script.
+    console.log(!JSON.stringify(bar)})
+
+

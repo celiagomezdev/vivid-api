@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1 Non smoking bars list
+    h2 Number of bars: #{bars.length}
+    if bars.length
+      ul
+        each bar, index in bars 
+          p #{index + 1}. <b>Name</b>: #{bar.name}. <b>Address</b>: #{bar.address}. <b>Id</b>: #{bar.id}
+    else
+      p There's no bars yet :(
+    script.
+      console.log(!JSON.stringify(bars)})
+
