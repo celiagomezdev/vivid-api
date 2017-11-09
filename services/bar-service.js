@@ -20,7 +20,7 @@ async function add(bar) {
   const allBars = await findAll()
 
   bar = BarModel.create(bar)
-  allBars.push(allBars)
+  allBars.push(bar)
 
   await saveAll(allBars)
 

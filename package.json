@@ -12,6 +12,7 @@
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
-    "pug": "^2.0.0-rc.4"
+    "pug": "^2.0.0-rc.4",
+    "faker": "4.1.0"
   }
 }

@@ -20,8 +20,12 @@ app.get('/bar/all', async (req, res, next) => {
 
 app.post('/bar', async (req, res, next) => {
   const bar = await BarService.add(req.body)
-  console.log(bar)
   res.send(bar)
+})
+
+app.delete('/bar/:barId', async (req, res, next) => {
+  await BarService.del(req.params.barId)
+  res.send(`Bar with id: ${barId} deleted from database`)
 })
 
 app.listen(3000, () => {

@@ -1,21 +1,23 @@
+const faker = require('faker')
+
 module.exports = class Bar {
   constructor(
     name,
-    neighbourhood,
     address,
-    postalCode,
-    location,
-    id,
-    googlePlaceId,
-    rating,
-    smokingType,
-    checked,
-    photos,
-    placeTypes
+    neighbourhood = '',
+    postalCode = 0,
+    location = '',
+    id = faker.random.uuid(),
+    googlePlaceId = '',
+    rating = 0,
+    smokingType = '',
+    checked = '',
+    photos = [],
+    placeTypes = []
   ) {
     this.name = name
-    this.neighbourhood = neighbourhood
     this.address = address
+    this.neighbourhood = neighbourhood
     this.postalCode = postalCode
     this.location = location
     this.id = id
@@ -30,8 +32,8 @@ module.exports = class Bar {
   static create(bar) {
     return new Bar(
       bar.name,
-      bar.neighbourhood,
       bar.address,
+      bar.neighbourhood,
       bar.postalCode,
       bar.location,
       bar.id,
