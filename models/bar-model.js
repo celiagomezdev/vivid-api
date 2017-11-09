@@ -1,4 +1,4 @@
-const uuidv1 = require('uuid/v1')
+const uuidv4 = require('uuid/v4')
 
 module.exports = class Bar {
   constructor(
@@ -7,7 +7,7 @@ module.exports = class Bar {
     neighbourhood = '',
     postalCode = 0,
     location = '',
-    id = uuidv1(),
+    id = uuidv4(),
     googlePlaceId = '',
     rating = 0,
     smokingType = '',
