@@ -11,13 +11,13 @@ const BarSchema = mongoose.Schema({
     type: String,
     default: ''
   },
-  neighbourhood: {
-    type: String,
-    default: ''
-  },
   postalCode: {
     type: Number,
     default: 0
+  },
+  neighbourhood: {
+    type: String,
+    default: ''
   },
   location: {
     type: String,

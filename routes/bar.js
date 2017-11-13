@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   await BarService.del(req.params.id)
-  res.send(`Bar with id: ${id} was deleted from the database`)
+  res.send(`Bar with id '${id}' deleted from the database`)
 })
 
 module.exports = router
