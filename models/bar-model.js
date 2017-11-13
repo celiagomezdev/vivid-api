@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const AutoIncrement = require('mongoose-sequence')(mongoose)
 const uuidv4 = require('uuid/v4')
 
 const BarSchema = mongoose.Schema({

@@ -2,8 +2,6 @@ const fs = require('fs')
 
 const BarModel = require('../models/bar-model')
 
-const dbPath = `${__dirname}/../bars-database.json`
-
 function findAll() {
   return BarModel.find()
 }
@@ -20,11 +18,29 @@ async function find(id) {
   return BarModel.findOne({ id })
 }
 
+async function addMany(data) {
+  return BarModel.collection.insertMany(data)
+}
+
+//Load JSON data
+
+function load(dataPath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(dataPath, 'utf8', (err, contents) => {
+      if (err) return reject(err)
+
+      resolve(JSON.parse(contents))
+    })
+  })
+}
+
 module.exports = {
   findAll,
   find,
   add,
-  del
+  addMany,
+  del,
+  load
 }
 
 // function getPlaceIdFromGMSApi(barName, postalCode) {
