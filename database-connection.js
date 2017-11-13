@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
+const config = require('config')
 
 mongoose.Promise = global.Promise
 
-mongoose.connect('mongodb://localhost/vivid-db', { useMongoClient: true })
+mongoose.connect(config.get('mongoDevUrl'), { useMongoClient: true })
