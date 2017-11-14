@@ -7,7 +7,7 @@ function findAll() {
 }
 
 async function add(bar) {
-  return BarModel.create(bar)
+  return BarModel.collection.save(bar, { upsert: true })
 }
 
 async function del(id) {
@@ -19,7 +19,19 @@ async function find(id) {
 }
 
 async function addMany(data) {
-  return BarModel.collection.insertMany(data)
+  return BarModel.collection.insertMany(data, { upsert: true })
+}
+
+//Load JSON data
+
+function load(dataPath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(dataPath, 'utf8', (err, contents) => {
+      if (err) return reject(err)
+
+      resolve(JSON.parse(contents))
+    })
+  })
 }
 
 module.exports = {
@@ -27,5 +39,6 @@ module.exports = {
   find,
   add,
   addMany,
-  del
+  del,
+  load
 }

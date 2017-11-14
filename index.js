@@ -21,3 +21,21 @@ app.get('/', async (req, res, next) => {
 app.listen(3000, () => {
   console.log('Server listening.')
 })
+
+const assert = require('assert')
+
+const BarService = require('./services/bar-service')
+const BarModel = require('./models/bar-model')
+
+//Import JSON data into mongoDB
+const dataPath = `${__dirname}/database-json/bars-database.json`
+
+BarService.load(dataPath)
+  .then(console.log(`Bars loaded`))
+  .then(loadedBars => {
+    BarService.addMany(loadedBars)
+    console.log(`${loadedBars.length} bars saved into database`)
+  })
+  .catch(function(error) {
+    console.log('Catch: ' + error.message)
+  })
