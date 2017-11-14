@@ -1,5 +1,4 @@
 {
-  "mongoTestUrl": "mongodb://localhost/test",
   "mongoDevUrl": "mongodb://localhost/vivid-testing-db",
   "mongoProdUrl": "mongodb://localhost/vivid-db"
 }

@@ -22,33 +22,10 @@ async function addMany(data) {
   return BarModel.collection.insertMany(data)
 }
 
-function load(dataPath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(dataPath, 'utf8', (err, contents) => {
-      if (err) return reject(err)
-
-      resolve(JSON.parse(contents))
-    })
-  })
-}
-
 module.exports = {
   findAll,
   find,
   add,
   addMany,
-  del,
-  load
+  del
 }
-
-// function getPlaceIdFromGMSApi(barName, postalCode) {
-//   return placeId
-// }
-
-// function getBarDataFromGMSApi(placeId) {
-//   return GMSBarData
-// }
-
-// function createBar(GMSBarData, smokingType, checked) {
-//   return bar
-// }
