@@ -3,4 +3,4 @@ const config = require('config')
 
 mongoose.Promise = global.Promise
 
-mongoose.connect(config.get('mongoDevUrl'), { useMongoClient: true })
+mongoose.connect(config.get('mongoTestUrl'), { useMongoClient: true })

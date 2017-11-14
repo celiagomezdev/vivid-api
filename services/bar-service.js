@@ -22,8 +22,6 @@ async function addMany(data) {
   return BarModel.collection.insertMany(data)
 }
 
-//Load JSON data
-
 function load(dataPath) {
   return new Promise((resolve, reject) => {
     fs.readFile(dataPath, 'utf8', (err, contents) => {
