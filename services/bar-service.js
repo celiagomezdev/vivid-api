@@ -22,7 +22,7 @@ async function addMany(data) {
   return BarModel.collection.insertMany(data, { upsert: true })
 }
 
-//Load JSON data
+//Code to save many entries at once into mongodb - from a JSON data file
 
 function load(dataPath) {
   return new Promise((resolve, reject) => {
@@ -34,11 +34,24 @@ function load(dataPath) {
   })
 }
 
+function saveJSON(dataPath) {
+  load(dataPath)
+    .then(console.log(`Bars loaded`))
+    .then(loadedBars => {
+      addMany(loadedBars)
+      console.log(`${loadedBars.length} bars saved into database`)
+    })
+    .catch(function(error) {
+      console.log('Catch: ' + error.message)
+    })
+}
+
 module.exports = {
   findAll,
   find,
   add,
   addMany,
   del,
-  load
+  load,
+  saveJSON
 }
