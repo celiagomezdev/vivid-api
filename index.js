@@ -26,4 +26,12 @@ app.listen(3000, () => {
 const BarService = require('./services/bar-service')
 const dataPath = `${__dirname}/database-json/bars-database.json`
 
-BarService.saveJSON(dataPath)
+BarService.load(dataPath)
+  .then(console.log(`Bars loaded`))
+  .then(loadedBars => {
+    BarService.addMany(loadedBars)
+    console.log(`${loadedBars.length} bars sent to database`)
+  })
+  .catch(function(error) {
+    console.log('Catch: ' + error.message)
+  })

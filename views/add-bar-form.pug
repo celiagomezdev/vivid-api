@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  if input
+    h1 This is your response:
+    h2 Your response: #{input.body}
+  else 
+    form(action='/bar/add', method='POST')
+      label(for='barName') Bar name: 
+      input(type='text', name='barName', value='', placeholder='', id='barName') 
+      input(type='submit', value='Submit')

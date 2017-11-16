@@ -7,7 +7,7 @@ function findAll() {
 }
 
 async function add(bar) {
-  return BarModel.collection.save(bar, { upsert: true })
+  return BarModel.collection.save(bar)
 }
 
 async function del(id) {
@@ -19,7 +19,7 @@ async function find(id) {
 }
 
 async function addMany(data) {
-  return BarModel.collection.insertMany(data, { upsert: true })
+  return BarModel.collection.insertMany(data)
 }
 
 //Code to save many entries at once into mongodb - from a JSON data file
@@ -34,17 +34,17 @@ function load(dataPath) {
   })
 }
 
-function saveJSON(dataPath) {
-  load(dataPath)
-    .then(console.log(`Bars loaded`))
-    .then(loadedBars => {
-      addMany(loadedBars)
-      console.log(`${loadedBars.length} bars saved into database`)
-    })
-    .catch(function(error) {
-      console.log('Catch: ' + error.message)
-    })
-}
+// function saveJSON(dataPath) {
+//   load(dataPath)
+//     .then(console.log(`Bars loaded`))
+//     .then(loadedBars => {
+//       addMany(loadedBars)
+//       console.log(`${loadedBars.length} bars saved into database`)
+//     })
+//     .catch(function(error) {
+//       console.log('Catch: ' + error.message)
+//     })
+// }
 
 module.exports = {
   findAll,
@@ -52,6 +52,5 @@ module.exports = {
   add,
   addMany,
   del,
-  load,
-  saveJSON
+  load
 }

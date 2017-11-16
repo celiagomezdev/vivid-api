@@ -4,8 +4,7 @@ const uuidv4 = require('uuid/v4')
 const BarSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   address: {
     type: String,
