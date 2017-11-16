@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const uuidv4 = require('uuid/v4')
 
 const BarSchema = mongoose.Schema({
   name: {
@@ -21,10 +20,6 @@ const BarSchema = mongoose.Schema({
   location: {
     type: String,
     default: ''
-  },
-  id: {
-    type: String,
-    default: uuidv4()
   },
   googlePlaceId: {
     type: String,

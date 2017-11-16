@@ -15,7 +15,7 @@ async function del(id) {
 }
 
 async function find(id) {
-  return BarModel.findOne({ id })
+  return BarModel.findOne({ _id: id })
 }
 
 async function addMany(data) {

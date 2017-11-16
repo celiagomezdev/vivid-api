@@ -23,15 +23,15 @@ app.listen(3000, () => {
 })
 
 //Temporary code to import JSON data into mongoDB
-const BarService = require('./services/bar-service')
-const dataPath = `${__dirname}/database-json/bars-database.json`
+// const BarService = require('./services/bar-service')
+// const dataPath = `${__dirname}/database-json/bars-database.json`
 
-BarService.load(dataPath)
-  .then(console.log(`Bars loaded`))
-  .then(loadedBars => {
-    BarService.addMany(loadedBars)
-    console.log(`${loadedBars.length} bars sent to database`)
-  })
-  .catch(function(error) {
-    console.log('Catch: ' + error.message)
-  })
+// BarService.load(dataPath)
+//   .then(console.log(`Bars loaded`))
+//   .then(loadedBars => {
+//     BarService.addMany(loadedBars)
+//     console.log(`${loadedBars.length} bars sent to database`)
+//   })
+//   .catch(function(error) {
+//     console.log('Catch: ' + error.message)
+//   })
