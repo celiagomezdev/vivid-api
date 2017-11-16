@@ -6,7 +6,7 @@ require('./database-connection.js')
 
 const app = express()
 
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded())
 app.use(cookieParser())
 app.set('view engine', 'pug')
 
@@ -15,7 +15,7 @@ const bar = require('./routes/bar')
 app.use('/bar', bar)
 
 app.get('/', async (req, res, next) => {
-  res.render('index')
+  res.render('index', { title: 'Vivid-API' })
 })
 
 app.listen(3000, () => {

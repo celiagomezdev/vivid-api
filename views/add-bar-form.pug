@@ -3,9 +3,9 @@ extends layout
 block content
   if input
     h1 This is your response:
-    h2 Your response: #{input.body}
+    h2 Your response: #{input}
   else 
     form(action='/bar/add', method='POST')
       label(for='barName') Bar name: 
-      input(type='text', name='barName', value='', placeholder='', id='barName') 
-      input(type='submit', value='Submit')
+      input#barName.form-control(type='text', name='barName', value='', placeholder='') 
+      input(type='submit', value='Send')
