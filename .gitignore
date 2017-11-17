@@ -1,5 +1,6 @@
 # Private data
 database-json/
+local.json
 
 # Logs
 logs

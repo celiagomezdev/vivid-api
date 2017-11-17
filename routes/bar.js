@@ -38,6 +38,12 @@ router.post('/', async (req, res, next) => {
   res.send(bar)
 })
 
+router.post('/update', async (req, res, next) => {
+  const bar = await BarService.update(req.body)
+
+  res.send(bar)
+})
+
 router.delete('/:id', async (req, res, next) => {
   await BarService.del(req.params.id)
   res.send(`Bar with id '${id}' deleted from the database`)

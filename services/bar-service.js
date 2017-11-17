@@ -7,7 +7,7 @@ function findAll() {
 }
 
 async function add(bar) {
-  return BarModel.save(bar, { upsert: true })
+  return BarModel.update({ placeid: bar.placeid }, bar, { upsert: true })
 }
 
 async function del(id) {
@@ -19,7 +19,7 @@ async function find(id) {
 }
 
 async function addMany(data) {
-  return BarModel.collection.insertMany(data, { upsert: true })
+  data.forEach(add)
 }
 
 //Code to save many entries at once into mongodb - from a JSON data file
