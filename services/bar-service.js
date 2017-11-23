@@ -34,18 +34,6 @@ function load(dataPath) {
   })
 }
 
-// function saveJSON(dataPath) {
-//   load(dataPath)
-//     .then(console.log(`Bars loaded`))
-//     .then(loadedBars => {
-//       addMany(loadedBars)
-//       console.log(`${loadedBars.length} bars saved into database`)
-//     })
-//     .catch(function(error) {
-//       console.log('Catch: ' + error.message)
-//     })
-// }
-
 module.exports = {
   findAll,
   find,

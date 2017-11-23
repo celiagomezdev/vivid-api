@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const config = require('config')
 
 const BarService = require('../services/bar-service')
 
@@ -20,10 +21,13 @@ router.get('/add', async (req, res, next) => {
 //Form connection
 router.post('/add', async (req, res, next) => {
   let input = req.body.barName
-  res.render('add-bar-form', { input: input })
+  res.render('add-bar-form', {
+    input: input,
+    GMSApiKey: config.get('GMSApiKey')
+  })
   console.log(input)
 
-  res.send(input)
+  res.send(input, GMSApiKey)
 })
 
 router.get('/:id', async (req, res, next) => {

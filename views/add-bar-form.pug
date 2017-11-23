@@ -9,15 +9,5 @@ block content
       label(for='barName') Bar name: 
       input#barName.form-control(type='text', name='barName', value='', placeholder='') 
       input(type='submit', value='Send')
-  script.
-    var defaultBounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(52.452439, 13.303039)
-    new google.maps.LatLng(52.579737, 13.521714))
 
-    var input = document.getElementById('barName')
-    var options = {
-      bounds: defaultBounds,
-      types: ['bar']
-    }
-
-    autocomplete = new google.maps.places.Autocomplete(input, options)
+    
