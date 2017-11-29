@@ -19,19 +19,7 @@ async function find(id) {
 }
 
 async function addMany(data) {
-  data.forEach(add)
-}
-
-//Code to save many entries at once into mongodb - from a JSON data file
-
-function load(dataPath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(dataPath, 'utf8', (err, contents) => {
-      if (err) return reject(err)
-
-      resolve(JSON.parse(contents))
-    })
-  })
+  return data.forEach(add)
 }
 
 module.exports = {
@@ -39,6 +27,5 @@ module.exports = {
   find,
   add,
   addMany,
-  del,
-  load
+  del
 }

@@ -11,11 +11,11 @@ router.get('/', async (req, res, next) => {
 router.get('/all', async (req, res, next) => {
   const bars = await BarService.findAll()
 
-  res.render('bar-list', { bars, title: 'Bar list' })
+  res.render('bar-list', { bars })
 })
 
 router.get('/add', async (req, res, next) => {
-  res.render('add-bar-form', { title: 'Add bar' })
+  res.render('add-bar-form')
 })
 
 //Form connection
@@ -33,7 +33,7 @@ router.post('/add', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   const bar = await BarService.find(req.params.id)
 
-  res.render('bar-detail', { bar, title: 'Bar details' })
+  res.render('bar-detail', { bar })
 })
 
 router.post('/', async (req, res, next) => {
