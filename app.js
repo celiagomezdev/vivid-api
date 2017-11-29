@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
-require('./database-connection.js')
+require('./database-connection')
 
 const app = express()
 
@@ -16,7 +16,7 @@ const bar = require('./routes/bar')
 app.use('/bar', bar)
 
 app.get('/', async (req, res, next) => {
-  res.render('index', { title: 'Vivid-API' })
+  res.render('index')
 })
 
 module.exports = app

@@ -5,7 +5,7 @@ const BarModel = require('../models/bar-model')
 function findAll() {
   return BarModel.find()
 }
-
+//Add new document avoiding duplicates
 async function add(bar) {
   return BarModel.update({ placeid: bar.placeid }, bar, { upsert: true })
 }
@@ -19,7 +19,7 @@ async function find(id) {
 }
 
 async function addMany(data) {
-  return data.forEach(add)
+  data.forEach(add)
 }
 
 module.exports = {

@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const config = require('config')
 
 const BarService = require('../services/bar-service')
 
@@ -10,24 +9,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/all', async (req, res, next) => {
   const bars = await BarService.findAll()
-
   res.render('bar-list', { bars })
-})
-
-router.get('/add', async (req, res, next) => {
-  res.render('add-bar-form')
-})
-
-//Form connection
-router.post('/add', async (req, res, next) => {
-  let input = req.body.barName
-  res.render('add-bar-form', {
-    input: input,
-    GMSApiKey: config.get('GMSApiKey')
-  })
-  console.log(input)
-
-  res.send(input, GMSApiKey)
 })
 
 router.get('/:id', async (req, res, next) => {
@@ -38,12 +20,6 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   const bar = await BarService.add(req.body)
-
-  res.send(bar)
-})
-
-router.post('/update', async (req, res, next) => {
-  const bar = await BarService.update(req.body)
 
   res.send(bar)
 })

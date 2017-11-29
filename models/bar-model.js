@@ -23,7 +23,9 @@ const BarSchema = mongoose.Schema({
   },
   placeid: {
     type: String,
-    default: ''
+    default: '',
+    required: true,
+    unique: true
   },
   rating: {
     type: Number,
@@ -51,4 +53,6 @@ const BarSchema = mongoose.Schema({
   ]
 })
 
-module.exports = mongoose.model('Bar', BarSchema)
+const PersonModel = mongoose.model('Bar', BarSchema)
+
+module.exports = PersonModel
