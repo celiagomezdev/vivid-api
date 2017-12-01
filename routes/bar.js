@@ -18,15 +18,27 @@ router.get('/:id', async (req, res, next) => {
   res.render('bar-detail', { bar })
 })
 
+router.get('/:id/json', async (req, res, next) => {
+  const bar = await BarService.find(req.params.id)
+  if (!bar) res.status(404)
+  res.send(bar)
+})
+
 router.post('/', async (req, res, next) => {
   const bar = await BarService.add(req.body)
 
   res.send(bar)
 })
 
+router.post('/add-many', async (req, res, next) => {
+  const barArray = await BarService.addMany(req.body)
+  res.send(barArray)
+})
+
 router.delete('/:id', async (req, res, next) => {
   await BarService.del(req.params.id)
-  res.send(`Bar with id '${id}' deleted from the database`)
+
+  res.send(`Bar deleted from the database`)
 })
 
 module.exports = router

@@ -7,11 +7,14 @@ function findAll() {
 }
 //Add new document avoiding duplicates
 async function add(bar) {
-  return BarModel.update({ placeid: bar.placeid }, bar, { upsert: true })
+  return BarModel.findOneAndUpdate({ placeid: bar.placeid }, bar, {
+    upsert: true,
+    new: true
+  })
 }
 
 async function del(id) {
-  return BarModel.remove({ id })
+  return BarModel.remove({ _id: id })
 }
 
 async function find(id) {
@@ -20,6 +23,7 @@ async function find(id) {
 
 async function addMany(data) {
   data.forEach(add)
+  return data
 }
 
 module.exports = {

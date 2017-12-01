@@ -24,7 +24,6 @@ const BarSchema = mongoose.Schema({
   placeid: {
     type: String,
     default: '',
-    required: true,
     unique: true
   },
   rating: {
