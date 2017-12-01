@@ -3,7 +3,7 @@ import request from 'supertest'
 import app from '../app'
 
 test('Get list of bars', async t => {
-  const barToCreate = {
+  const bar = {
     name: 'Natascha',
     address: 'Weserstr.',
     placeid: 'hjsgjhdsg56215673562'
@@ -11,7 +11,7 @@ test('Get list of bars', async t => {
 
   const creation = await request(app)
     .post('/bar')
-    .send(barToCreate)
+    .send(bar)
 
   const res = await request(app).get('/bar')
 
@@ -21,7 +21,7 @@ test('Get list of bars', async t => {
 })
 
 test('Create a new bar', async t => {
-  const barToCreate = {
+  const bar = {
     name: 'Aloma',
     address: 'Pannierstr.',
     placeid: 'skjhdkjah45435342'
@@ -29,12 +29,12 @@ test('Create a new bar', async t => {
 
   const res = await request(app)
     .post('/bar')
-    .send(barToCreate)
+    .send(bar)
 
   t.is(res.status, 200)
-  t.is(res.body.name, barToCreate.name)
-  t.is(res.body.address, barToCreate.address)
-  t.is(res.body.placeid, barToCreate.placeid)
+  t.is(res.body.name, bar.name)
+  t.is(res.body.address, bar.address)
+  t.is(res.body.placeid, bar.placeid)
 })
 
 test('Avoid creating duplicates', async t => {
@@ -119,4 +119,24 @@ test('Add many entries', async t => {
 
   t.is(res.status, 200)
   t.deepEqual(res.body, barArray)
+})
+
+test('Render bars-list page', async t => {
+  const renderedPage = await request(app).get('/bar/all')
+
+  t.is(renderedPage.status, 200)
+})
+
+test('Render bar-detail page', async t => {
+  const bar = (await request(app)
+    .post('/bar')
+    .send({
+      name: 'Matcha',
+      address: 'Reuterstr.',
+      placeid: '6287687236ssdds'
+    })).body
+
+  const renderedPage = await request(app).get(`/bar/${bar._id}`)
+
+  t.is(renderedPage.status, 200)
 })
