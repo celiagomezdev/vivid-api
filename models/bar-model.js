@@ -21,11 +21,12 @@ const BarSchema = mongoose.Schema({
     type: String,
     default: ''
   },
-  placeid: {
-    type: String,
-    default: '',
-    unique: true
-  },
+  placeTypes: [
+    {
+      type: String,
+      default: ''
+    }
+  ],
   rating: {
     type: Number,
     default: 0
@@ -34,22 +35,31 @@ const BarSchema = mongoose.Schema({
     type: String,
     default: ''
   },
-  checked: {
-    type: String,
-    default: ''
+  openingHours: {
+    type: mongoose.Schema.Types.Mixed,
+    default: {}
   },
-  photos: [
+  thumbPhotos: [
     {
       type: String,
       default: ''
     }
   ],
-  placeTypes: [
+  largePhotos: [
     {
       type: String,
       default: ''
     }
-  ]
+  ],
+  placeId: {
+    type: String,
+    default: '',
+    unique: true
+  },
+  status: {
+    type: String,
+    default: 'pending'
+  }
 })
 
 const PersonModel = mongoose.model('Bar', BarSchema)
