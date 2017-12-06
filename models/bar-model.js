@@ -62,6 +62,6 @@ const BarSchema = mongoose.Schema({
   }
 })
 
-const PersonModel = mongoose.model('Bar', BarSchema)
+const BarModel = mongoose.model('Bar', BarSchema)
 
-module.exports = PersonModel
+module.exports = BarModel
