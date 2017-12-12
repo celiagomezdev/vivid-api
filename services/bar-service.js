@@ -7,7 +7,7 @@ function findAll() {
 }
 //Add new document avoiding duplicates
 async function add(bar) {
-  return BarModel.findOneAndUpdate({ placeid: bar.placeid }, bar, {
+  return BarModel.findOneAndUpdate({ placeId: bar.placeId }, bar, {
     upsert: true,
     new: true
   })

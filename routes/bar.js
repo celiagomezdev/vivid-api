@@ -25,9 +25,18 @@ router.get('/:id/json', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  const bar = await BarService.add(req.body)
+  const newBar = req.body
 
-  res.send(bar)
+  if (newBar === null) {
+    return res.status(400).send('The input was empty')
+  }
+
+  if (typeof newBar !== 'object') {
+    return res.status(400).send('An Object was expected')
+  }
+
+  const bar = await BarService.add(newBar)
+  return res.send(bar)
 })
 
 router.post('/add-many', async (req, res, next) => {
