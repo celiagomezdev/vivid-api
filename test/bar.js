@@ -6,7 +6,7 @@ test('Get list of bars', async t => {
   const bar = {
     name: 'Natascha',
     address: 'Weserstr.',
-    placeid: 'hjsgjhdsg56215673562'
+    placeId: 'hjsgjhdsg56215673562'
   }
 
   const creation = await request(app)
@@ -24,7 +24,7 @@ test('Create a new bar', async t => {
   const bar = {
     name: 'Aloma',
     address: 'Pannierstr.',
-    placeid: 'skjhdkjah45435342'
+    placeId: 'skjhdkjah45435342'
   }
 
   const res = await request(app)
@@ -43,7 +43,7 @@ test('Avoid creating duplicates', async t => {
     .send({
       name: 'Berghain',
       address: 'Ostkreuz.',
-      placeid: '68768376adssds'
+      placeId: '68768376adssds'
     })).body
 
   const duplicatedBar = (await request(app)
@@ -51,7 +51,7 @@ test('Avoid creating duplicates', async t => {
     .send({
       name: 'Berghain',
       address: 'Ostkreuz.',
-      placeid: '68768376adssds'
+      placeId: '68768376adssds'
     })).body
 
   const res = await request(app).get('/bar')
@@ -69,7 +69,7 @@ test('Fetch a bar', async t => {
     .send({
       name: 'Paloma',
       address: 'Reuterstr.',
-      placeid: '236826hhgsdjgwy'
+      placeId: '236826hhgsdjgwy'
     })).body
 
   const fetch = await request(app).get(`/bar/${bar._id}/json`)
@@ -86,7 +86,7 @@ test('Delete a bar', async t => {
     .send({
       name: 'Lagari',
       address: 'Hobrechstr.',
-      placeid: '7638263872'
+      placeId: '7638263872'
     })).body
 
   const del = await request(app).delete(`/bar/${bar._id}`)
@@ -104,12 +104,12 @@ test('Add many entries', async t => {
     {
       name: 'K-fetisch',
       address: 'Hobrechstr.',
-      placeid: 'iuweyeiuwhdskjsdh7'
+      placeId: 'iuweyeiuwhdskjsdh7'
     },
     {
       name: 'Wilders',
       address: 'Hermannpl.',
-      placeid: 'kssddshdu77'
+      placeId: 'kssddshdu77'
     }
   ]
 
@@ -133,7 +133,7 @@ test('Render bar-detail page', async t => {
     .send({
       name: 'Matcha',
       address: 'Reuterstr.',
-      placeid: '6287687236ssdds'
+      placeId: '6287687236ssdds'
     })).body
 
   const renderedPage = await request(app).get(`/bar/${bar._id}`)
