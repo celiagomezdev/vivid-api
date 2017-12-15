@@ -34,7 +34,7 @@ test('Create a new bar', async t => {
   t.is(res.status, 200)
   t.is(res.body.name, bar.name)
   t.is(res.body.address, bar.address)
-  t.is(res.body.placeid, bar.placeid)
+  t.is(res.body.placeId, bar.placeId)
 })
 
 test('Avoid creating duplicates', async t => {
