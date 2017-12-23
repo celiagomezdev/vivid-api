@@ -28,6 +28,7 @@ router.post('/', async (req, res, next) => {
   const newBar = req.body
 
   const bar = await BarService.add(newBar)
+
   res.send(bar)
 })
 

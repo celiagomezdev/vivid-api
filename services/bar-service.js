@@ -5,11 +5,12 @@ const BarModel = require('../models/bar-model')
 function findAll() {
   return BarModel.find()
 }
-//Add new document avoiding duplicates
+
 async function add(bar) {
   return BarModel.findOneAndUpdate({ placeId: bar.placeId }, bar, {
     upsert: true,
-    new: true
+    new: true,
+    setDefaultsOnInsert: true
   })
 }
 
