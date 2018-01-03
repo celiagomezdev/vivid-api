@@ -7,6 +7,10 @@ function findAll() {
 }
 
 async function add(bar) {
+  return BarModel.create(bar)
+}
+
+async function update(bar) {
   return BarModel.findOneAndUpdate({ placeId: bar.placeId }, bar, {
     upsert: true,
     new: true,
