@@ -78,6 +78,34 @@ test('Fetch a bar', async t => {
   t.deepEqual(fetch.body, bar)
 })
 
+test('Update a bar', async t => {
+  const bar = {
+    name: 'Marinae',
+    address: 'Lenaustr.',
+    placeId: 'jsahkjdsuwyequiwye'
+  }
+
+  const res = await request(app)
+    .post('/bar')
+    .send(bar)
+
+  const upBar = {
+    _id: res.body._id,
+    name: 'Marinae',
+    address: 'Lenaustr.',
+    placeId: 'jsahkjdsuwyequiwye'
+  }
+
+  const resUpBar = await request(app)
+    .post('/bar/update')
+    .send(upBar)
+
+  const fetch = await request(app).get(`/bar/${upBar._id}/json`)
+
+  t.is(resUpBar.status, 200)
+  t.is(upBar.address, fetch.body.address)
+})
+
 test('Delete a bar', async t => {
   t.plan(3)
 

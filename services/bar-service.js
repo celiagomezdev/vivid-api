@@ -11,9 +11,9 @@ async function add(bar) {
 }
 
 async function update(bar) {
-  return BarModel.findOneAndUpdate({ placeId: bar.placeId }, bar, {
-    upsert: true,
+  return BarModel.findOneAndUpdate({ _id: bar._id }, bar, {
     new: true,
+    upsert: true,
     setDefaultsOnInsert: true
   })
 }
@@ -36,6 +36,7 @@ module.exports = {
   findAll,
   find,
   add,
+  update,
   addMany,
   del
 }

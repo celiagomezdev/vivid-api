@@ -31,11 +31,25 @@ router.post('/', async (req, res, next) => {
     res.send(bar)
   } catch (err) {
     if (err.name === 'MongoError' && err.code === 11000) {
-      return res
-        .status(500)
-        .send({ success: false, message: 'Bar already exists!' })
+      return res.status(500).send({
+        success: false,
+        message: `Bar '${newBar.name}' already exists!`
+      })
     }
-    return res.status(500).send(err)
+    return res.status(500).send({ success: false, message: err.message })
+  }
+})
+
+router.post('/update', async (req, res, next) => {
+  const newBar = req.body
+  try {
+    const bar = await BarService.update(newBar)
+    res.send(bar)
+  } catch (err) {
+    return res.status(500).send({
+      success: false,
+      message: `Update failed. Message: ${err.message}`
+    })
   }
 })
 
