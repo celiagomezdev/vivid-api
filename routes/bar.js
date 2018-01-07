@@ -26,10 +26,17 @@ router.get('/:id/json', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   const newBar = req.body
-
-  const bar = await BarService.add(newBar)
-
-  res.send(bar)
+  try {
+    const bar = await BarService.add(newBar)
+    res.send(bar)
+  } catch (err) {
+    if (err.name === 'MongoError' && err.code === 11000) {
+      return res
+        .status(500)
+        .send({ success: false, message: 'Bar already exists!' })
+    }
+    return res.status(500).send(err)
+  }
 })
 
 router.post('/add-many', async (req, res, next) => {

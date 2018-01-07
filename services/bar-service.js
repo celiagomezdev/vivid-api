@@ -19,7 +19,8 @@ async function update(bar) {
 }
 
 async function del(id) {
-  return BarModel.remove({ _id: id })
+  const returnedBar = BarModel.remove({ _id: id })
+  return returnedBar
 }
 
 async function find(id) {

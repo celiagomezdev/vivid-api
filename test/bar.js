@@ -37,96 +37,106 @@ test('Create a new bar', async t => {
   t.is(res.body.placeId, bar.placeId)
 })
 
-// test('Avoid creating duplicates', async t => {
-//   const bar = {
-//     name: 'Aloma',
-//     address: 'Pannierstr.',
-//     placeId: 'skjhdkjah45435342'
-//   }
+test('Avoid creating duplicates', async t => {
+  const bar = {
+    name: 'Wilds',
+    address: 'Hermannpl.',
+    placeId: 'sajhgsjhag65656'
+  }
 
-//   const res = await request(app)
-//     .post('/bar')
-//     .send(bar)
+  const res = await request(app)
+    .post('/bar')
+    .send(bar)
 
-//   t.is(res.status, 404)
-// })
+  const dupBar = {
+    name: 'Wilds',
+    address: 'Hermannpl.',
+    placeId: 'sajhgsjhag65656'
+  }
 
-// test('Fetch a bar', async t => {
-//   t.plan(2)
+  const resDupBar = await request(app)
+    .post('/bar')
+    .send(dupBar)
 
-//   const bar = (await request(app)
-//     .post('/bar')
-//     .send({
-//       name: 'Paloma',
-//       address: 'Reuterstr.',
-//       placeId: '236826hhgsdjgwy'
-//     })).body
+  t.is(resDupBar.status, 500)
+})
 
-//   const fetch = await request(app).get(`/bar/${bar._id}/json`)
+test('Fetch a bar', async t => {
+  t.plan(2)
 
-//   t.is(fetch.status, 200)
-//   t.deepEqual(fetch.body, bar)
-// })
+  const bar = (await request(app)
+    .post('/bar')
+    .send({
+      name: 'Paloma',
+      address: 'Reuterstr.',
+      placeId: '236826hhgsdjgwy'
+    })).body
 
-// test('Delete a bar', async t => {
-//   t.plan(3)
+  const fetch = await request(app).get(`/bar/${bar._id}/json`)
 
-//   const bar = (await request(app)
-//     .post('/bar')
-//     .send({
-//       name: 'Lagari',
-//       address: 'Hobrechstr.',
-//       placeId: '7638263872'
-//     })).body
+  t.is(fetch.status, 200)
+  t.deepEqual(fetch.body, bar)
+})
 
-//   const del = await request(app).delete(`/bar/${bar._id}`)
+test('Delete a bar', async t => {
+  t.plan(3)
 
-//   t.is(del.status, 200)
-//   t.is(del.text, `Bar deleted from the database`)
+  const bar = (await request(app)
+    .post('/bar')
+    .send({
+      name: 'Lagari',
+      address: 'Hobrechstr.',
+      placeId: '7638263872'
+    })).body
 
-//   const fetch = await request(app).get(`/bar/${bar._id}/json`)
+  const del = await request(app).delete(`/bar/${bar._id}`)
 
-//   t.is(fetch.status, 404)
-// })
+  t.is(del.status, 200)
+  t.is(del.text, `Bar deleted from the database`)
 
-// test('Add many entries', async t => {
-//   const barArray = [
-//     {
-//       name: 'K-fetisch',
-//       address: 'Hobrechstr.',
-//       placeId: 'iuweyeiuwhdskjsdh7'
-//     },
-//     {
-//       name: 'Wilders',
-//       address: 'Hermannpl.',
-//       placeId: 'kssddshdu77'
-//     }
-//   ]
+  const fetch = await request(app).get(`/bar/${bar._id}/json`)
 
-//   const res = await request(app)
-//     .post('/bar/add-many')
-//     .send(barArray)
+  t.is(fetch.status, 404)
+})
 
-//   t.is(res.status, 200)
-//   t.deepEqual(res.body, barArray)
-// })
+test('Add many entries', async t => {
+  const barArray = [
+    {
+      name: 'K-fetisch',
+      address: 'Hobrechstr.',
+      placeId: 'iuweyeiuwhdskjsdh7'
+    },
+    {
+      name: 'Wilders',
+      address: 'Hermannpl.',
+      placeId: 'kssddshdu77'
+    }
+  ]
 
-// test('Render bars-list page', async t => {
-//   const renderedPage = await request(app).get('/bar/all')
+  const res = await request(app)
+    .post('/bar/add-many')
+    .send(barArray)
 
-//   t.is(renderedPage.status, 200)
-// })
+  t.is(res.status, 200)
+  t.deepEqual(res.body, barArray)
+})
 
-// test('Render bar-detail page', async t => {
-//   const bar = (await request(app)
-//     .post('/bar')
-//     .send({
-//       name: 'Matcha',
-//       address: 'Reuterstr.',
-//       placeId: '6287687236ssdds'
-//     })).body
+test('Render bars-list page', async t => {
+  const renderedPage = await request(app).get('/bar/all')
 
-//   const renderedPage = await request(app).get(`/bar/${bar._id}`)
+  t.is(renderedPage.status, 200)
+})
 
-//   t.is(renderedPage.status, 200)
-// })
+test('Render bar-detail page', async t => {
+  const bar = (await request(app)
+    .post('/bar')
+    .send({
+      name: 'Matcha',
+      address: 'Reuterstr.',
+      placeId: '6287687236ssdds'
+    })).body
+
+  const renderedPage = await request(app).get(`/bar/${bar._id}`)
+
+  t.is(renderedPage.status, 200)
+})
