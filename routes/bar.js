@@ -12,6 +12,17 @@ router.get('/all', async (req, res, next) => {
   res.render('bar-list', { bars })
 })
 
+router.get('/:neigbourhood', async (req, res, next) => {
+  const kiez = req.params.neigbourhood
+  const bars = await BarService.findAllOf(kiez)
+  res.send(bars)
+})
+
+router.get('/all/:neigbourhood', async (req, res, next) => {
+  const bars = await BarService.findAllOf(req.params.neigbourhood)
+  res.render('bar-list', { bars })
+})
+
 router.get('/:id', async (req, res, next) => {
   const bar = await BarService.find(req.params.id)
 

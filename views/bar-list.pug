@@ -8,7 +8,7 @@ block content
         each bar, index in bars 
           p #{index + 1}. <b>Name</b>: #{bar.name}. <b>Address</b>: #{bar.address}. <b>Id</b>: #{bar._id}
     else
-      p There's no bars yet :(
+      p There are no bars yet :(
     script.
       console.log(!JSON.stringify(bars)})
 

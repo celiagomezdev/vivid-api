@@ -6,6 +6,11 @@ function findAll() {
   return BarModel.find()
 }
 
+function findAllOf(neighbourhood) {
+  const bars = BarModel.find({ neighbourhood: neighbourhood })
+  return bars
+}
+
 async function add(bar) {
   return BarModel.create(bar)
 }
@@ -34,6 +39,7 @@ async function addMany(data) {
 
 module.exports = {
   findAll,
+  findAllOf,
   find,
   add,
   update,

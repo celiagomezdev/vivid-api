@@ -20,6 +20,39 @@ test('Get list of bars', async t => {
   t.true(res.body.length > 0)
 })
 
+test('Get bars of a certain neighbourhood', async t => {
+  const bar = {
+    name: 'Rudi Marie',
+    neighbourhood: 'Neukölln',
+    placeId: 'jsdhkjsahkjdsh'
+  }
+
+  const creation = await request(app)
+    .post('/bar')
+    .send(bar)
+
+  const res = await request(app).get(`/bar/${creation.body.neighbourhood}`)
+
+  t.is(res.status, 200)
+  t.is(res.body[0].neighbourhood, bar.neighbourhood)
+})
+
+test('Get no results of a certain neighbourhood', async t => {
+  const bar = {
+    name: 'Kaiser',
+    neighbourhood: 'Spandau',
+    placeId: 'asdjhdksht'
+  }
+
+  const creation = await request(app)
+    .post('/bar')
+    .send(bar)
+
+  const res = await request(app).get(`/${bar.neighbourhood}`)
+
+  t.is(res.status, 404)
+})
+
 test('Create a new bar', async t => {
   const bar = {
     name: 'Aloma',
@@ -91,9 +124,7 @@ test('Update a bar', async t => {
 
   const upBar = {
     _id: res.body._id,
-    name: 'Marinae',
-    address: 'Lenaustr.',
-    placeId: 'jsahkjdsuwyequiwye'
+    address: 'Maybachufer.'
   }
 
   const resUpBar = await request(app)
@@ -151,6 +182,12 @@ test('Add many entries', async t => {
 
 test('Render bars-list page', async t => {
   const renderedPage = await request(app).get('/bar/all')
+
+  t.is(renderedPage.status, 200)
+})
+
+test('Render neighbourhood-list page', async t => {
+  const renderedPage = await request(app).get('/bar/Neukölln')
 
   t.is(renderedPage.status, 200)
 })
