@@ -38,17 +38,7 @@ test('Get bars of a certain neighbourhood', async t => {
 })
 
 test('Get no results of a certain neighbourhood', async t => {
-  const bar = {
-    name: 'Kaiser',
-    neighbourhood: 'Spandau',
-    placeId: 'asdjhdksht'
-  }
-
-  const creation = await request(app)
-    .post('/bar')
-    .send(bar)
-
-  const res = await request(app).get(`/${bar.neighbourhood}`)
+  const res = await request(app).get(`/bar/Brooklin`)
 
   t.is(res.status, 404)
 })
@@ -186,6 +176,12 @@ test('Render bars-list page', async t => {
   t.is(renderedPage.status, 200)
 })
 
+test('Render bars-list for neighbourhood page', async t => {
+  const renderedPage = await request(app).get('/bar/all/Neukölln')
+
+  t.is(renderedPage.status, 200)
+})
+
 test('Render neighbourhood-list page', async t => {
   const renderedPage = await request(app).get('/bar/Neukölln')
 
@@ -201,7 +197,7 @@ test('Render bar-detail page', async t => {
       placeId: '6287687236ssdds'
     })).body
 
-  const renderedPage = await request(app).get(`/bar/${bar._id}`)
+  const renderedPage = await request(app).get(`/bar/detail/${bar._id}`)
 
   t.is(renderedPage.status, 200)
 })

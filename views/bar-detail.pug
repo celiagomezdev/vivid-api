@@ -2,8 +2,8 @@ extends layout
 
 block content
   if bar 
-    h1 Bar added: #{bar.name}
-    p Full bar details:
+    h1 Bar: #{bar.name}
+    p Details:
     ul
       p <b>Name</b>: #{bar.name}
       p <b>Address</b>: #{bar.address}
@@ -13,9 +13,10 @@ block content
 
   else 
    h1 We couldn't find this bar!
-  
   script.
-    console.log(!{JSON.stringify(bar)})
+    console.log(!JSON.stringify(bar))
+
+
 
 
 
