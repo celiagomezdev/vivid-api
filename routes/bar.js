@@ -25,7 +25,6 @@ router.get('/all/:neigbourhood', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   const bar = await BarService.find(req.params.id)
-
   res.render('bar-detail', { bar })
 })
 

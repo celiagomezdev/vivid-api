@@ -7,8 +7,7 @@ function findAll() {
 }
 
 function findAllOf(neighbourhood) {
-  const bars = BarModel.find({ neighbourhood: neighbourhood })
-  return bars
+  return BarModel.find({ neighbourhood: neighbourhood })
 }
 
 async function add(bar) {
@@ -24,8 +23,7 @@ async function update(bar) {
 }
 
 async function del(id) {
-  const returnedBar = BarModel.remove({ _id: id })
-  return returnedBar
+  return BarModel.remove({ _id: id })
 }
 
 async function find(id) {
