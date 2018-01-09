@@ -31,7 +31,7 @@ async function find(id) {
 }
 
 async function addMany(data) {
-  data.forEach(add)
+  await Promise.all(data.map(add))
   return data
 }
 
