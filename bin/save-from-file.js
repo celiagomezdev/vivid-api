@@ -1,4 +1,5 @@
 //Script to import JSON file to mongoDB
+require('../database-connection')
 
 const dataPath = `${__dirname}/../database-json/updated-bars-database.json`
 const BarService = require('../services/bar-service')
@@ -15,10 +16,11 @@ const load = async dataPath => {
 
 const saveBars = async () => {
   const loadedBars = await load(dataPath)
-  return BarService.addMany(loadedBars)
+  BarService.addMany(loadedBars)
 }
 
 saveBars()
+  .then(() => console.log('bars sent'))
   .then(() => process.exit(0))
   .catch(err => {
     console.log(err)
