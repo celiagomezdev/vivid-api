@@ -1,24 +1,21 @@
 //Script to import JSON file to mongoDB
-const BarService = require('./services/bar-service')
-const dataPath = `${__dirname}/database-json/bars-database.json`
 
-BarService.load(dataPath)
-  .then(loadedBars => {
-    BarService.addMany(loadedBars)
-  })
-  .catch(function(error) {
-    console.error()
-    throw error
-  })
+const dataPath = `${__dirname}/../database-json/updated-bars-database.json`
+const BarService = require('../services/bar-service')
+const fs = require('fs')
 
-//Code to save many entries at once into mongodb - from a JSON data file
-
-function load(dataPath) {
+const load = async dataPath => {
   return new Promise((resolve, reject) => {
-    fs.readFile(dataPath, 'utf8', (err, contents) => {
+    return fs.readFile(dataPath, 'utf8', (err, contents) => {
       if (err) return reject(err)
-
       resolve(JSON.parse(contents))
     })
   })
 }
+
+const saveBars = async () => {
+  const loadedBars = await load(dataPath)
+  return BarService.addMany(loadedBars)
+}
+
+saveBars()
