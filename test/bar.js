@@ -1,6 +1,10 @@
 import test from 'ava'
 import request from 'supertest'
 import app from '../app'
+import dbHelper from '../bin/empty-db'
+
+//Empty db
+dbHelper.emptyBarDB()
 
 test('Get list of bars', async t => {
   const bar = {
