@@ -47,6 +47,7 @@ router.post('/', async (req, res, next) => {
         message: `Bar '${newBar.name}' already exists!`
       })
     }
+    console.log(err.message)
     return res.status(500).send({ success: false, message: err.message })
   }
 })
