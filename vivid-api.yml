@@ -1,0 +1,32 @@
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: vivid-api
+# spec:
+#   containers:
+#   - name: app
+#     autoredeploy: true
+#     environment:
+#       - 'DB_URL=mongodb://mongodb/vivid-db'
+#       - VIRTUAL_HOST=vivid-api.com
+#     image: 'celiagomezdev/vivid-api'
+#     ports:
+#       - '3000'
+#     restart: on-failure
+
+#   - name: load-balancer
+#     image: 'dockercloud/haproxy:latest'
+#     links:
+#       - app
+#     ports:
+#       - '80:80'
+#       - '443:443'
+#     restart: on-failure
+#     roles:
+#       - global
+
+#   - name: mongodb
+#     image: 'mongo:latest'
+
+   

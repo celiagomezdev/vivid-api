@@ -1,4 +1,4 @@
 {
   "mongoDevUrl": "mongodb://localhost/vivid-dev-db",
-  "mongoProdUrl": "mongodb://localhost/vivid-prod-db"
+  "mongoProdUrl": "mongodb://localhost/vivid-db"
 }

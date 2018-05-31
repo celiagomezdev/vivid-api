@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: development.Dockerfile
     environment:
-      - VIRTUAL_HOST=vivid-api.com
+      - VIRTUAL_HOST=local.vivid-api.com
       - DB_URL=mongodb://mongodb/vivid-db
     ports:
       - 3000:3000
